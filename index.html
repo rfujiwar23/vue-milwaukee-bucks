@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js</title>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <style>
+        body {
+            background:greenyellow;
+            max-width:960px;
+            margin:20px auto;
+        }
+
+        p, h3, ul {
+            margin:0;
+            padding: 0;
+        }
+
+        li {
+            list-style-type: none;
+            background:#fff;
+            box-shadow: 1px 3px 6px #000;
+            margin:20px auto;
+            padding:10px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        li.fav {
+            background:grey;
+            color:white;
+        }
+
+       
+    </style>
+
+</head>
+<body>
+
+    <h1>Hey Bucks fans!</h1>
+    <div id="app">
+
+        <a v-bind:href="url">Go to Team Page</a>
+
+        <div v-if="showPlayer">
+            <!-- <p><strong>{{team}}</strong>: No.{{ number }} {{ position }} {{ name }} {{ last }} </p> -->
+            <ul>
+                <li v-for="player in team" :class="{ fav: player.isFav }" @click="toggleFav(player)">
+                    <img :src="player.img" :alt="player.name">
+                    <h3>{{ player.name }}</h3>
+                    <p> {{ player.position }}</p>
+                </li>
+            </ul>
+        </div>
+
+        <button @click="toggleShowPlayer">
+            <span v-if="showPlayer">Hide Player</span>
+            <span v-else>Show Player</span>
+        </button>
+
+        <!-- <div v-show="showPlayer">Currently showing the greatest player in the NBA</div> -->
+        
+        
+        
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
